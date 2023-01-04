@@ -1,28 +1,16 @@
 <template>
   <left-drawer></left-drawer>
-  <component :is="currentComponent"></component>
-
-  <!-- <map-view></map-view> -->
+  <right-drawer></right-drawer>
+  <map-view></map-view>
 </template>
 
 <script setup lang="ts">
 import emitter from '@/utils/eventbus';
-import mapView from './port/map.vue';
-import { defineAsyncComponent, markRaw, onMounted, onUnmounted, ref } from 'vue';
+import { defineAsyncComponent, markRaw, onUnmounted } from 'vue';
 
-const leftDrawer = markRaw(defineAsyncComponent(() => import('./port/leftDrawer.vue')));
-const rightDrawer = markRaw(defineAsyncComponent(() => import('./port/rightDrawer.vue')));
-const currentComponent = ref(rightDrawer);
-
-onMounted(() => {
-  emitter.on('setRightDrawer', (name) => {
-    if (name === 'event') {
-      //
-    } else {
-      currentComponent.value = rightDrawer;
-    }
-  });
-});
+const leftDrawer = markRaw(defineAsyncComponent(() => import('./people/leftDrawer.vue')));
+const rightDrawer = markRaw(defineAsyncComponent(() => import('./people/rightDrawer.vue')));
+const mapView = markRaw(defineAsyncComponent(() => import('./people/map.vue')));
 
 onUnmounted(() => {
   emitter.emit('setRightDrawer', '');
