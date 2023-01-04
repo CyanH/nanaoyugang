@@ -55,7 +55,7 @@ const loadChart = (data: any) => {
       position: mars3d.Cesium.Cartesian3.fromDegrees(attr.lng, attr.lat, height1 + height2 + height3 + height4),
       style: {
         text: numall,
-        font_size: 18,
+        font_size: 24,
         font_family: '楷体',
         color: '#0EF5BC',
         outline: true,
@@ -64,6 +64,9 @@ const loadChart = (data: any) => {
         horizontalOrigin: mars3d.Cesium.HorizontalOrigin.CENTER,
         verticalOrigin: mars3d.Cesium.VerticalOrigin.BOTTOM,
         pixelOffset: new mars3d.Cesium.Cartesian2(0, -20),
+        scaleByDistance: true,
+        scaleByDistance_far: 1000000,
+        scaleByDistance_near: 1,
       },
     });
     graphicLayer.addGraphic(graphic);
