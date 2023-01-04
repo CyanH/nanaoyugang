@@ -107,12 +107,12 @@ const state = reactive({
     {
       name: '海上台风来袭',
       type: '安全生产第一课',
-      date: '2023-1-3',
+      date: '2023-01-03',
     },
     {
       name: '海上船舶机械故障',
       type: '安全生产第一课',
-      date: '2023-1-5',
+      date: '2023-01-05',
     },
   ],
   ruleList: [
@@ -144,12 +144,12 @@ const state = reactive({
     {
       name: '黄正',
       type: '行为违规',
-      date: '2023-1-3',
+      date: '2023-01-03',
     },
     {
       name: '何伍毅',
       type: '证书违规',
-      date: '2023-1-5',
+      date: '2023-01-05',
     },
   ],
 });
