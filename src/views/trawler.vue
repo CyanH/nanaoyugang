@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 import emitter from '@/utils/eventbus';
-import mapView from './port/map.vue';
 import { defineAsyncComponent, markRaw, onMounted, onUnmounted, ref } from 'vue';
 
 const leftDrawer = markRaw(defineAsyncComponent(() => import('./port/leftDrawer.vue')));

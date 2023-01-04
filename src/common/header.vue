@@ -1,6 +1,5 @@
 <template>
   <div class="header">
-    <slot name="left"></slot>
     <div class="date">
       <span class="mr">{{ date }}</span>
       <span class="mr">{{ week }}</span>
@@ -9,6 +8,7 @@
       <span class="mr">{{ degree }}°C</span>
     </div>
     <div class="title" @click="handleClick('port')">智慧渔港一张图</div>
+    <div class="right" @click="openUrl">广东省渔港一张图</div>
   </div>
 </template>
 
@@ -43,6 +43,10 @@ onMounted(() => {
 
 const handleClick = (name: string) => {
   router.push({ name });
+};
+
+const openUrl = () => {
+  window.open('http://14.23.111.138:92/gdhyyy/index.jsp');
 };
 </script>
 
@@ -79,6 +83,16 @@ const handleClick = (name: string) => {
 
   .mr {
     margin-right: 12px;
+  }
+
+  .right {
+    position: absolute;
+    top: 28px;
+    transform: translateY(-50%);
+    right: 10%;
+    color: #ddfff7;
+    font-size: 16px;
+    cursor: pointer;
   }
 }
 </style>
