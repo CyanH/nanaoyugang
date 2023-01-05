@@ -5,13 +5,6 @@
        <top-view></top-view>
        <v-title title="港内安全"></v-title>
        <top-two-view></top-two-view>
-      <!-- <target-view></target-view> -->
-      <!--<div class="line"></div>
-      <income-middle></income-middle>
-      <div class="line"></div>
-      <product-middle></product-middle>
-      <div class="line"></div>
-      <bottom-view></bottom-view> -->
     </v-card>
   </v-drawer>
 </template>

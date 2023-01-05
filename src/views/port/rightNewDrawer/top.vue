@@ -34,7 +34,6 @@
   <script setup lang="ts">
   import * as echarts from 'echarts';
   import { onMounted, ref, reactive } from 'vue';
-  import { getCyyXsManagement } from '@/api/industrial';
   import productMiddle from './productMiddle.vue';
   import { CountTo } from 'vue3-count-to';
   // 项目、资金折线图
