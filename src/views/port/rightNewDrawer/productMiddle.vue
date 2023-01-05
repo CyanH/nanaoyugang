@@ -20,7 +20,6 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue';
-// import { getCyyGrowthRecord } from '@/api/industrial';
 import * as echarts from 'echarts';
 import { loadChart } from '../chart/cgChart';
 
@@ -66,16 +65,6 @@ onMounted(() => {
 
 const getData = () => {
   loadChart(myChart, list);
-  // getCyyGrowthRecord({ year: new Date().getFullYear() }).then((res: any) => {
-  //   let data = res.content[0];
-  //   // prize.value = data.prize;
-  //   // list[0].value = data.yrProduct;
-  //   // list[1].value = data.yrTechnology;
-  //   // list[2].value = data.zhProduct;
-  //   // list[3].value = data.zhTechnology;
-  //   // list[4].value = data.zhProject;
-    
-  // });
 };
 </script>
 
