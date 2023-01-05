@@ -5,7 +5,6 @@
       <span class="span">在籍渔船</span>
     </div>
     <div class="right">
-      <!-- <span class="num">1658</span> -->
       <count-to :startVal="0" :endVal="1658" :duration="3000" class="num"></count-to>
       <span class="dw">艘</span>
     </div>
@@ -50,22 +49,22 @@ const state = reactive({
   list: [
     {
       name: '经济区面积',
-      value: 56,
+      value: 3556,
       danwe: '㎡',
     },
     {
       name: '渔港水域面积',
-      value: 1,
+      value: 2183,
       danwe: '㎡',
     },
     {
       name: '渔船码头长度',
-      value: 2,
+      value: 422,
       danwe: 'm',
     },
     {
       name: '休闲码头长度',
-      value: 5,
+      value: 195,
       danwe: 'm',
     },
   ],
@@ -146,11 +145,11 @@ const Time = () => {
 
 <style lang="scss" scoped>
 .target {
-  // margin: 0px 0 22px;
   position: relative;
-  height: 28%;
+
   .bar {
     text-align: center;
+    margin: 15px 0;
 
     .num {
       font-size: 30px;
@@ -171,18 +170,15 @@ const Time = () => {
 }
 
 .chart-container {
-  height: 50%;
-  margin-top: 10px;
+  height: calc(100% - 235px);
+  margin-top: 12px;
 
   .left1 {
     width: 220px;
     height: 100%;
-    // background-color: yellow;
+
     .left_dan {
       height: 25%;
-
-      // justify-content: center;
-      // align-items: center;
 
       .left_dan_top {
         height: calc(100% - 25px);
@@ -285,7 +281,6 @@ const Time = () => {
   }
 
   .bottom {
-    margin-top: 20px;
     height: 100%;
   }
   .cz-bot {
@@ -296,7 +291,6 @@ const Time = () => {
 .title {
   height: 40px;
   margin-top: 20px;
-  // background-color: yellow;
   display: flex;
   .left {
     font-size: 20px;
