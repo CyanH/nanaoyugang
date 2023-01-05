@@ -13,26 +13,15 @@
     <div class="con">
       <div class="nav">
         <div>序号</div>
-        <div>类型</div>
         <div>报警原因</div>
-        <div>时间</div>
+        <div>报警时间</div>
       </div>
       <div class="content">
         <vue3-seamless-scroll :list="state.projectList" :step="0.3" :hover="true" :limitScrollNum="11">
           <div class="row" v-for="(item, index) in state.projectList" :key="index">
             <div>{{ index + 1 }}</div>
-            <el-tooltip placement="top">
-              <template #content>{{ item.lx }}</template>
-              <span>{{ item.lx }}</span>
-            </el-tooltip>
-            <el-tooltip placement="top">
-              <template #content>{{ item.title }}</template>
-              <span>{{ item.title }}</span>
-            </el-tooltip>
-            <el-tooltip placement="top">
-              <template #content>{{ item.date }}</template>
-              <span>{{ parseTime(item.date, '{y}-{m}-{d}') }}</span>
-            </el-tooltip>
+            <div>{{ item.title }}</div>
+            <div>{{ item.date }}</div>
           </div>
         </vue3-seamless-scroll>
       </div>
@@ -42,7 +31,6 @@
 
 <script setup lang="ts">
 import { CountTo } from 'vue3-count-to';
-import { parseTime } from '@/utils/parseTime';
 import { reactive } from 'vue';
 import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
 // 项目、资金折线图
@@ -51,62 +39,62 @@ const state = reactive({
   projectList: [
     {
       title: '港内人员打架 ',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-21 08:06:02',
       lx: '港内安全',
     },
     {
       title: '明火作业',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-21 16:06:02',
       lx: '港内安全',
     },
     {
       title: '港内车辆相撞',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-23 15:06:02',
       lx: '港内安全',
     },
     {
       title: '港内人员打架 ',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-24 11:06:02',
       lx: '港内安全',
     },
     {
       title: '明火作业',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-25 08:06:02',
       lx: '港内安全',
     },
     {
       title: '港内车辆相撞',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-26 16:06:02',
       lx: '港内安全',
     },
     {
       title: '港内人员打架',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-27 16:06:02',
       lx: '港内安全',
     },
     {
       title: '明火作业',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-27 18:06:02',
       lx: '港内安全',
     },
     {
       title: '港内车辆相撞',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-28 06:06:02',
       lx: '港内安全',
     },
     {
       title: '港内人员打架',
-      date: '2022-09-21 16:06:02',
+      date: '2022-12-31 10:06:02',
       lx: '港内安全',
     },
     {
       title: '明火作业',
-      date: '2022-09-21 16:06:02',
+      date: '2023-01-02 11:06:02',
       lx: '港内安全',
     },
     {
       title: '港内车辆相撞',
-      date: '2022-09-21 16:06:02',
+      date: '2023-01-03 22:06:02',
       lx: '港内安全',
     },
   ] as any,
@@ -157,16 +145,13 @@ const state = reactive({
       text-align: center;
 
       :nth-child(1) {
-        width: 10%;
+        width: 16%;
       }
       :nth-child(2) {
-        width: 34%;
+        width: 42%;
       }
       :nth-child(3) {
-        width: 33%;
-      }
-      :nth-child(4) {
-        width: 23%;
+        width: 42%;
       }
     }
     .content {
@@ -188,35 +173,14 @@ const state = reactive({
         }
 
         :nth-child(1) {
-          width: 10%;
+          width: 16%;
         }
         :nth-child(2) {
-          width: 34%;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
+          width: 42%;
         }
         :nth-child(3) {
-          width: 33%;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
+          width: 42%;
         }
-        :nth-child(4) {
-          width: 23%;
-        }
-      }
-
-      .wkg {
-        color: #ff8251;
-      }
-
-      .sgz {
-        color: #00f6ff;
-      }
-
-      .ywg {
-        color: #22ff51;
       }
     }
   }
