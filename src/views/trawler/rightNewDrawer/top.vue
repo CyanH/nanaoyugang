@@ -7,7 +7,7 @@
         <div>进出港时间</div>
       </div>
       <div class="content">
-          <vue3-seamless-scroll :list="state.projectList" :step="0.3" :hover="true" :limitScrollNum="11">
+          <vue3-seamless-scroll :list="state.projectList" :step="0.3" :hover="true">
               <div class="row" v-for="(item, index) in state.projectList" :key="index">
                 <el-tooltip placement="top">
                       <template #content>{{ item.name }}</template>
@@ -34,7 +34,7 @@
   <script setup lang="ts">
   import * as echarts from 'echarts';
   import { onMounted, ref, reactive } from 'vue';
-  import { getCyyXsManagement } from '@/api/industrial';
+  // import { getCyyXsManagement } from '@/api/industrial';
   import productMiddle from './productMiddle.vue';
   import { parseTime } from '@/utils/parseTime';
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
@@ -65,6 +65,70 @@ let chartEle_all = ref<HTMLDivElement | null>(null);
         lx: 'AIS',
         bm: '1460642',
         g_lx: '进港'
+      },
+      {
+        name: '粤番渔01388',
+        date: '2022-09-03 20:44:00',
+        yg_name: '莲花山渔港',
+        lx: 'AIS',
+        bm: '1460642',
+        g_lx: '进港'
+      },
+      {
+        name: '粤番渔02356',
+        date: '2022-09-03 20:44:00',
+        yg_name: '莲花山渔港',
+        lx: '北斗',
+        bm: '1460642',
+        g_lx: '出港'
+      },
+      {
+        name: '粤番渔05417',
+        date: '2022-09-03 20:44:00',
+        yg_name: '莲花山渔港',
+        lx: 'AIS',
+        bm: '1460642',
+        g_lx: '出港'
+      },
+      {
+        name: '粤番渔05417',
+        date: '2022-09-03 20:44:00',
+        yg_name: '莲花山渔港',
+        lx: '北斗',
+        bm: '1460642',
+        g_lx: '进港'
+      },
+      {
+        name: '粤番渔02356',
+        date: '2022-09-03 20:44:00',
+        yg_name: '莲花山渔港',
+        lx: '北斗',
+        bm: '1460642',
+        g_lx: '出港'
+      },
+      {
+        name: '粤番渔05417',
+        date: '2022-09-03 20:44:00',
+        yg_name: '莲花山渔港',
+        lx: 'AIS',
+        bm: '1460642',
+        g_lx: '进港'
+      },
+      {
+        name: '粤番渔02356',
+        date: '2022-09-03 20:44:00',
+        yg_name: '莲花山渔港',
+        lx: '北斗',
+        bm: '1460642',
+        g_lx: '出港'
+      },
+      {
+        name: '粤番渔05417',
+        date: '2022-09-03 20:44:00',
+        yg_name: '莲花山渔港',
+        lx: '北斗',
+        bm: '1460642',
+        g_lx: '出港'
       }
     ] as any
   });
@@ -80,16 +144,16 @@ let chartEle_all = ref<HTMLDivElement | null>(null);
   const getData = () => {
     let data = [10000,50000,65555,97777,84444,7111,10222]
     let date = ['1-01','1-02','1-03','1-04','1-05','1-06','1-07']
-    for(let i = 0; i < 15;i++){
-      state.projectList.push({
-        name: '粤番渔0235'+i,
-        date: '2022-09-03 20:44:00',
-        yg_name: '莲花山渔港',
-        lx: 'AIS',
-        bm: '146064'+i,
-        g_lx: '进港'
-      })
-    }
+    // for(let i = 0; i < 15;i++){
+    //   state.projectList.push({
+    //     name: '粤番渔0235'+i,
+    //     date: '2022-09-03 20:44:00',
+    //     yg_name: '莲花山渔港',
+    //     lx: 'AIS',
+    //     bm: '146064'+i,
+    //     g_lx: '进港'
+    //   })
+    // }
     // loadChart(myChar_all,data,date,'水产','万元')
   };
   </script>

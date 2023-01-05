@@ -1,5 +1,5 @@
 <template>
-  <v-drawer direction="right">
+  <v-drawer direction="right" hasArrow>
     <v-card>
        <v-title title="渔船进出动态"></v-title>
        <top-view></top-view>

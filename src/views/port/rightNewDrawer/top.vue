@@ -33,8 +33,8 @@
   
   <script setup lang="ts">
   import * as echarts from 'echarts';
-  import { onMounted, ref, reactive } from 'vue';
-  import { getCyyXsManagement } from '@/api/industrial';
+  import { onMounted, ref, reactive,onUnmounted } from 'vue';
+  // import { getCyyXsManagement } from '@/api/industrial';
   import productMiddle from './productMiddle.vue';
   import { CountTo } from 'vue3-count-to';
   // 项目、资金折线图
@@ -72,7 +72,11 @@ let chartEle_all = ref<HTMLDivElement | null>(null);
     });
     getData();
   });
-  
+  onUnmounted(() => {
+    window.addEventListener('resize', () => {
+        myChar_all.resize();
+    });
+  })
   const getData = () => {
     let data = [10000,50000,65555,97777,84444,7111,10222]
     let date = ['1-01','1-02','1-03','1-04','1-05','1-06','1-07']

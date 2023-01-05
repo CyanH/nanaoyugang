@@ -1,5 +1,5 @@
 <template>
-  <v-drawer direction="left">
+  <v-drawer direction="left" hasArrow>
     <v-card>
       <!-- <v-title title="渔港概况"></v-title>
       <product-middle></product-middle> -->
@@ -26,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import incomeMiddle from './newDrawer/incomeMiddle.vue';
 import bottomView from './newDrawer/bottom.vue';
 import one from './newDrawer/one.vue'
 </script>

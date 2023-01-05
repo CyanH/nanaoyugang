@@ -189,7 +189,7 @@ const state = reactive({
   );
 
   .trawler-overview-wrapper {
-    border-left: 1px solid #ffa840;
+    border-left: 1px solid #63a3ff;
     padding: 8px 0;
     width: 140px;
 

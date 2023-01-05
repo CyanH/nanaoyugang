@@ -49,7 +49,7 @@
   
   <script setup lang="ts">
   import { onMounted, ref, reactive } from 'vue';
-  import { getCyyXsManagement } from '@/api/industrial';
+  // import { getCyyXsManagement } from '@/api/industrial';
   import { CountTo } from 'vue3-count-to';
   let offlineMoney = ref(0);
   let onlineMoney = ref(0);
@@ -93,20 +93,20 @@
   });
   
   const getData = () => {
-    getCyyXsManagement({ year: new Date().getFullYear() }).then((res: any) => {
-      // let data = res.content[0];
-      // offlineMoney.value = data.offlineMoney;
-      // onlineMoney.value = data.onlineMoney;
-      // mainCyProductMoney.value = data.mainCyProductMoney;
-    //   state.list[0].money = data.offlineMoney;
-    //   state.list[0].bl = (data.offlineMoney / data.mainCyProductMoney) * 100;
-    //   state.list[2].money = data.offlineMoney;
-    //   state.list[2].bl = (data.offlineMoney / data.mainCyProductMoney) * 100;
-    //   state.list[1].money = data.onlineMoney;
-    //   state.list[1].bl = (data.onlineMoney / data.mainCyProductMoney) * 100;
-    //   state.list[3].money = data.onlineMoney;
-    //   state.list[3].bl = (data.onlineMoney / data.mainCyProductMoney) * 100;
-    });
+    // getCyyXsManagement({ year: new Date().getFullYear() }).then((res: any) => {
+    //   // let data = res.content[0];
+    //   // offlineMoney.value = data.offlineMoney;
+    //   // onlineMoney.value = data.onlineMoney;
+    //   // mainCyProductMoney.value = data.mainCyProductMoney;
+    // //   state.list[0].money = data.offlineMoney;
+    // //   state.list[0].bl = (data.offlineMoney / data.mainCyProductMoney) * 100;
+    // //   state.list[2].money = data.offlineMoney;
+    // //   state.list[2].bl = (data.offlineMoney / data.mainCyProductMoney) * 100;
+    // //   state.list[1].money = data.onlineMoney;
+    // //   state.list[1].bl = (data.onlineMoney / data.mainCyProductMoney) * 100;
+    // //   state.list[3].money = data.onlineMoney;
+    // //   state.list[3].bl = (data.onlineMoney / data.mainCyProductMoney) * 100;
+    // });
   };
   </script>
   

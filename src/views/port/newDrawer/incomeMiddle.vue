@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { getLndnManagement } from '@/api/industrial';
+// import { getLndnManagement } from '@/api/industrial';
 import { onMounted, ref } from 'vue';
 
 let avgIncome = ref(1681);
@@ -40,12 +40,12 @@ let countyAvgIncome = ref(8);
 let percent = ref('100%');
 
 onMounted(() => {
-  getLndnManagement({ year: new Date().getFullYear() }).then((res: any) => {
-    // let data = res.content[0];
-    // avgIncome.value = data.avgIncome;
-    // countyAvgIncome.value = data.countyAvgIncome;
-    // percent.value = data.percent;
-  });
+  // getLndnManagement({ year: new Date().getFullYear() }).then((res: any) => {
+  //   // let data = res.content[0];
+  //   // avgIncome.value = data.avgIncome;
+  //   // countyAvgIncome.value = data.countyAvgIncome;
+  //   // percent.value = data.percent;
+  // });
 });
 </script>
 

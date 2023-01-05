@@ -44,7 +44,13 @@
           <img src="@/assets/image/yuan.png" alt="">
           <div class="span">渔船进出港统计</div>
         </div>
-        <div class="right"></div>
+        <div class="right">
+          <div class="_o">
+            <div class="o_1" :class="o_index == 0 ? 'active' : ''" @click="go_active(0)">年</div>
+            <div class="o_1" :class="o_index == 1 ? 'active' : ''" @click="go_active(1)">月</div>
+            <div class="o_1" :class="o_index == 2 ? 'active' : ''" @click="go_active(2)">周</div>
+          </div>
+        </div>
       </div>
       <div class="chert">
         <div class="chart" ref="chartEle_all"></div>
@@ -54,7 +60,7 @@
   
   <script setup lang="ts">
   import * as echarts from 'echarts';
-  import { onBeforeUnmount, onMounted, reactive, ref } from 'vue';
+  import { onUnmounted, onMounted, reactive, ref } from 'vue';
   import { loadChart } from '../chart/top';
   const state = reactive({
     top: [
@@ -82,6 +88,7 @@
       }
     ] as any,
   });
+  let o_index = ref(2)
   let myChar_all: echarts.ECharts;
   let chartEle_all = ref<HTMLDivElement | null>(null);  
   let time = ref(null as any)
@@ -92,6 +99,14 @@
     });
     getData();
   });
+  onUnmounted(() => {
+    window.addEventListener('resize', () => {
+        myChar_all.resize();
+    });
+  })
+  const go_active = (index:any) => {
+    o_index.value = index
+  }
   const getImgUrl = (url: string) => {
     return new URL(`../../../assets/image/trawler/${url}.png`, import.meta.url).href;
   };
@@ -398,7 +413,32 @@
         }
         .right{
             flex: 1;
-          
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+            ._o{
+              align-items: center;
+              background-color: rgba(22,127,255,.2);
+              display: flex;
+              flex-direction: row;
+              height: 22px;
+              width: 90px;
+              .o_1{
+                border: 1px solid transparent;
+                color: #fff;
+                cursor: pointer;
+                font-size: 12px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+                width: 28px;
+              }
+              .active{
+                background-color: rgba(22,127,255,.4);
+                border-color: #167fff;
+              }
+            }
         }
       }
       .chert{
