@@ -27,17 +27,13 @@
         <div class="bt-top">
           <v-title title="渔获电子交易市场统计"></v-title>
 
-          <div class="chart">
-            <div class="chart" ref="chart_one"></div>
-          </div>
+          <div class="chart" ref="chart_one"></div>
         </div>
 
         <div class="bt-bottom">
           <v-title title="价格走势分析"></v-title>
 
-          <div class="chart">
-            <div class="chart" ref="chart_two"></div>
-          </div>
+          <div class="chart" ref="chart_two"></div>
         </div>
       </div>
     </v-card>
@@ -45,9 +41,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref,onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue';
 import * as echarts from 'echarts';
-import { loadChart } from './chart/shangan'
+import { loadChart } from './chart/shangan';
 let myChar_one: echarts.ECharts;
 let chart_one = ref<HTMLDivElement | null>(null);
 let myChar_two: echarts.ECharts;
@@ -61,43 +57,43 @@ onMounted(() => {
   });
   getData();
   new_getData();
-})
+});
 onUnmounted(() => {
   window.removeEventListener('resize', () => {
     myChar_one.resize();
     myChar_two.resize();
   });
-})
+});
 const getData = () => {
-  let data_one1 = [50,30,20,160,60,70,100]
-  let data_one2 = [70,50,20,50,60,120,170]
-  let data_one3 = [40,90,50,110,70,68,210]
-  let date = ['1-01','1-02','1-03','1-04','1-05','1-06','1-07']
-  let new_datas = []
+  let data_one1 = [50, 30, 20, 160, 60, 70, 100];
+  let data_one2 = [70, 50, 20, 50, 60, 120, 170];
+  let data_one3 = [40, 90, 50, 110, 70, 68, 210];
+  let date = ['1-01', '1-02', '1-03', '1-04', '1-05', '1-06', '1-07'];
+  let new_datas = [];
   let new_data = [
     {
       name: '莲花山码头交易市场',
       color: '#ffd600',
       o1_color: 'rgba(255,214,0,1)',
       o2_color: 'rgba(255,214,0,0)',
-      data: data_one1
+      data: data_one1,
     },
     {
       name: '黄沙水产',
       color: '#37f097',
       o1_color: 'rgba(55,240,151,1)',
       o2_color: 'rgba(55,240,151,0)',
-      data: data_one2
+      data: data_one2,
     },
     {
       name: '五湖四海水产世界',
       color: '#ff8c00',
       o1_color: 'rgba(255,140,0,1)',
       o2_color: 'rgba(255,140,0,0)',
-      data: data_one3
-    }
-  ]
-  for(let i = 0;i < new_data.length; i++){
+      data: data_one3,
+    },
+  ];
+  for (let i = 0; i < new_data.length; i++) {
     new_datas.push({
       name: new_data[i].name,
       type: 'line',
@@ -134,41 +130,41 @@ const getData = () => {
           ),
         },
       },
-      data: new_data[i].data
-    })
+      data: new_data[i].data,
+    });
   }
-  loadChart(myChar_one,new_datas,date,'万元')
-}
+  loadChart(myChar_one, new_datas, date, '万元');
+};
 const new_getData = () => {
-  let data_one1 = [50,30,20,160,60,70,100]
-  let data_one2 = [70,50,20,50,60,120,170]
-  let data_one3 = [40,90,50,110,70,68,210]
-  let date = ['1-01','1-02','1-03','1-04','1-05','1-06','1-07']
-  let new_datas = []
+  let data_one1 = [50, 30, 20, 160, 60, 70, 100];
+  let data_one2 = [70, 50, 20, 50, 60, 120, 170];
+  let data_one3 = [40, 90, 50, 110, 70, 68, 210];
+  let date = ['1-01', '1-02', '1-03', '1-04', '1-05', '1-06', '1-07'];
+  let new_datas = [];
   let new_data = [
     {
       name: '扇贝',
       color: '#1ed5ff',
       o1_color: 'rgba(30,213,255,1)',
       o2_color: 'rgba(30,213,255,0)',
-      data: data_one2
+      data: data_one2,
     },
     {
       name: '花鲢',
       color: '#ffd700',
       o1_color: 'rgba(255,215,0,1)',
       o2_color: 'rgba(255,215,0,0)',
-      data: data_one3
+      data: data_one3,
     },
     {
       name: '海蛎子',
       color: '#ff8c00',
       o1_color: 'rgba(255,140,0,1)',
       o2_color: 'rgba(255,140,0,0)',
-      data: data_one1
-    }
-  ]
-  for(let i = 0;i < new_data.length; i++){
+      data: data_one1,
+    },
+  ];
+  for (let i = 0; i < new_data.length; i++) {
     new_datas.push({
       name: new_data[i].name,
       type: 'line',
@@ -205,12 +201,11 @@ const new_getData = () => {
           ),
         },
       },
-      data: new_data[i].data
-    })
+      data: new_data[i].data,
+    });
   }
-  loadChart(myChar_two,new_datas,date,'千克/元')
-}
-
+  loadChart(myChar_two, new_datas, date, '千克/元');
+};
 </script>
 
 <style lang="scss" scoped>
