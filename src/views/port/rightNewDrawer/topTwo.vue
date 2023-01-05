@@ -6,7 +6,6 @@
               <span class="span">港内安全巡查</span>
           </div>
           <div class="right">
-              <!-- <span class="num">12</span> -->
               <count-to :startVal="0" :endVal="12" :duration="3000" class="num"></count-to>
               <span class="dw">次</span>
           </div>

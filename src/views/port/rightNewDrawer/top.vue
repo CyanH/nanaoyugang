@@ -7,7 +7,6 @@
                 <span class="span">水产交易</span>
               </div>
               <div class="right">
-                  <!-- <span class="num">8</span> -->
                   <count-to :startVal="0" :endVal="8" :duration="3000" class="num"></count-to>
                   <span class="dw">万元</span>
               </div>
@@ -17,13 +16,6 @@
           </div>
       </div>
       <div class="one two">
-          <!-- <div class="title">
-              <div class="left">渔获上岸</div>
-              <div class="right">
-                  <span class="num">9685</span>
-                  <span class="dw">吨</span>
-              </div>
-          </div> -->
           <div class="echat1">
               <product-middle></product-middle>
           </div>
@@ -34,7 +26,6 @@
 <script setup lang="ts">
 import * as echarts from 'echarts';
 import { onMounted, ref, reactive,onUnmounted } from 'vue';
-// import { getCyyXsManagement } from '@/api/industrial';
 import productMiddle from './productMiddle.vue';
 import { CountTo } from 'vue3-count-to';
 // 项目、资金折线图
