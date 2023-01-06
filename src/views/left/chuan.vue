@@ -43,7 +43,7 @@
         </div>
         <div class="tup">
             <div class="tup_o">
-                <div class="title">粤番渔运13203</div>
+                <div class="title">{{ states.list.cm }}</div>
                 <div class="zj">
                     <img class="imgs" src="@/assets/image/trawler/ewm.png" alt="">
                 </div>
@@ -293,14 +293,14 @@
     .two{
         width: 100%;
         height: calc(100% - 620px);
-        margin: 12px auto;
+        // margin: 12px auto;
         .two_one_n{
             margin-top: 20px;
         }
         .two_fu{
             width: 80%;
             height: 48%;
-            margin: 12px auto;
+            margin: 8px auto;
             // background-color: #13c477;
             display: flex;
             // justify-content: center;
