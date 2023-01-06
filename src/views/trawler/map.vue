@@ -58,9 +58,7 @@ onMounted(() => {
     return attr.name;
   });
   graphicLayer.on(mars3d.EventType.click, (event) => {
-    console.log(event.sourceTarget._name);
-    console.log(event.sourceTarget);
-    breedStore.setBaseName(event.sourceTarget._name);
+    breedStore.setChuanName(event.sourceTarget._name);
     emitter.emit('setRightDrawer', 'gangKo');
   });
 });

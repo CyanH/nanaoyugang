@@ -12,13 +12,18 @@ import { defineAsyncComponent, markRaw, onMounted, onUnmounted, ref } from 'vue'
 const leftDrawer = markRaw(defineAsyncComponent(() => import('./trawler/leftDrawer.vue')));
 const rightDrawer = markRaw(defineAsyncComponent(() => import('./trawler/rightDrawer.vue')));
 const mapView = markRaw(defineAsyncComponent(() => import('./trawler/map.vue')));
+const chuan = markRaw(defineAsyncComponent(() => import('./left/chuan.vue')));
 const currentComponent = ref(rightDrawer);
 
 onMounted(() => {
   emitter.on('setRightDrawer', (name) => {
+    
+    
     if (name === 'event') {
       //
-    } else {
+    } else if(name === 'gangKo'){
+      currentComponent.value = chuan
+    }else {
       currentComponent.value = rightDrawer;
     }
   });
