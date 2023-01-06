@@ -1,7 +1,7 @@
 <template>
     <v-drawer direction="right">
       <v-card>
-        <v-title :title="states.name" hasClose></v-title>
+        <v-title title="渔船信息" hasClose></v-title>
         <div class="top">
             <div class="one">
                 <img src="@/assets/image/dian.png" alt="" />
@@ -53,13 +53,15 @@
         </div>
         <v-title title="渔获上岸"></v-title>
         <div class="two">
-            <div class="two_one" v-for="item,index in states.yhsa" :class="index == 0 ? 'two_one_n' : ''">
-                <img :src="getImgUrl('r'+(index+1)+'_1.png')" class="icon-label" alt="">
-                <div class="right" :class="index === 0 ? 'right_1' : 'right_2'">
-                    <div class="l1">{{ item.name }}</div>
-                    <div class="l2" :class="'l2_' + (index + 1)">
-                        <span class="num">{{ item.num }}</span>&nbsp;
-                        <span class="value">{{ item.dw }}</span>
+            <div class="two_fu" v-for="item,index in states.yhsa" :class="index == 0 ? 'two_one_n' : ''">
+                <div class="two_one">
+                    <img :src="getImgUrl('r'+(index+1)+'_1.png')" class="icon-label" alt="">
+                    <div class="right" :class="index === 0 ? 'right_1' : 'right_2'">
+                        <div class="l1">{{ item.name }}</div>
+                        <div class="l2" :class="'l2_' + (index + 1)">
+                            <span class="num">{{ item.num }}</span>&nbsp;
+                            <span class="value">{{ item.dw }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,7 +88,7 @@
         list: {
            cm: '粤番渔运13203',
            lx: '海洋捕捞辅助船海洋中型',
-           gj: '莲花山渔港',
+           gj: '云澳中心渔港',
            syr: '郭有胜',
            lxfs: '13602264293' 
         },
@@ -117,11 +119,15 @@
         () => breedStore.$state.chuanName,
         (val) => {
             states.name = val
+            states.list.cm = val
+            goList();
         }
     )
     onMounted(() => {
         console.log(breedStore.$state.chuanName);
         states.name = breedStore.$state.chuanName
+        states.list.cm = breedStore.$state.chuanName
+        goList();
         time_new.value = setInterval(() => {
             time.value = parseTime(new Date(), '{h}:{m}:{s}');
         }, 1000);
@@ -129,6 +135,29 @@
             date.value = parseTime(new Date(), '{m}-{d}');
         }, 3600000);
     })
+    const goList = () => {
+        if( states.list.cm == '粤汕渔23156' || states.list.cm == '粤汕渔45632'){
+            states.list.lx = '海洋捕捞辅助船海洋小型'
+            states.list.syr = '郭锦堂'
+            states.list.lxfs = '13532279516'
+            states.list.gj = '吴平寨渔港'
+        }else if( states.list.cm == '粤汕渔63521' || states.list.cm == '粤汕渔01388'){
+            states.list.lx = '内陆捕捞辅助船'
+            states.list.syr = '王添有'
+            states.list.lxfs = '13570545921'
+            states.list.gj = '后江渔港'
+        }else if( states.list.cm == '粤汕渔05417'){
+            states.list.lx = '捕捞船'
+            states.list.syr = '陈炳坤'
+            states.list.lxfs = '13609061278'
+            states.list.gj = '云澳中心渔港'
+        }else{
+            states.list.lx = '海洋捕捞辅助船海洋中型'
+            states.list.syr = '郭有胜'
+            states.list.lxfs = '13602264293'
+            states.list.gj = '云澳中心渔港'
+        }
+    }
     const getImgUrl = (url: string) => {
         return new URL(`../../assets/image/trawler/${url}`, import.meta.url).href;
     };
@@ -146,7 +175,7 @@
     .top{
         width: 100%;
         height: 155px;
-        margin: 12px auto;
+        margin: 12px auto 20px;
         .one {
             height: 30px;
             width: 100%;
@@ -178,7 +207,6 @@
         margin: 0 auto;
         height: 120px;
         display: flex;
-        margin-bottom: 12px;
         box-sizing: border-box;
         .tops_one{
             width: calc(50% - 6px);
@@ -218,6 +246,7 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 12px;
+        margin-top: 12px;
         .tup_o{
             width: 220px;
             height: 189px;
@@ -272,16 +301,23 @@
         .two_one_n{
             margin-top: 20px;
         }
-        .two_one{
+        .two_fu{
             width: 80%;
-            margin: 12px auto;
             height: 48%;
-            align-items: center;
-            box-sizing: border-box;
+            margin: 12px auto;
+            // background-color: #13c477;
             display: flex;
+            // justify-content: center;
+            align-items: center;
+        }
+        .two_one{
+            align-items: center;
+            display: flex;
+            height: 80px;
+            width: 100%;
             .icon-label{
-                width: 60px;
-                height: 60px;
+                width: 65px;
+                height: 65px;
             }
             .right_1{
                 background-image: url('@/assets/image/trawler/r1_2.png');
