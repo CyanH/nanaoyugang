@@ -71,12 +71,8 @@
   </template>
   
   <script setup lang="ts">
-    import EZUIKit from 'ezuikit-js';
     import { onMounted, reactive, ref, watch, onUnmounted, nextTick } from 'vue';
     import { useBreedStore } from '@/store';
-    import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
-    import { getVideoData } from '@/api/breed/index';
-    import emitter from '@/utils/eventbus';
     import { parseTime } from '@/utils/parseTime';
     const breedStore = useBreedStore();
     const date = ref(parseTime(new Date(), '{m}-{d}'));
