@@ -255,33 +255,6 @@ const getData = () => {
     margin: auto;
   }
 }
-// .title{
-//   height: 40px;
-//   margin-top: 20px;
-//   // background-color: yellow;
-//   display: flex;
-//   .left{
-//       font-size: 20px;
-//       // width: 180px;
-//       display: flex;
-//       .span{
-//           margin-right: 4px;
-//           color: #e3f0ff;
-//           font-size: 18px;
-//           line-height: 1;
-//           margin-left: -20px;
-//           padding-top: 15px;
-//       }
-//   }
-//   .right{
-//       flex: 1;
-//       .num{
-//           font-size: 30px;
-//           padding-right: 5px;
-//           color: #0bf;
-//       }
-//   }
-//   }
 
 .top {
   width: 100%;
@@ -334,22 +307,7 @@ const getData = () => {
       .two1_one_a {
         flex: 1;
         height: 100%;
-        // .t1,.t22{
-        //   height: 50%;
 
-        //   .s1{
-        //     font-size: 18px;
-        //     margin-right: 16px;
-        //   }
-        //   .s2{
-        //     font-family: PMZDR;
-        //     font-size: 22px;
-        //     font-style: italic;
-        //   }
-        // }
-        // .t2{
-        //   height: 50%;
-        // }
         display: flex;
         align-items: center;
         .t1,
@@ -390,10 +348,7 @@ const getData = () => {
       // width: 180px;
       display: flex;
       align-items: center;
-      img {
-        // width: 9px;
-        // height: 9px;
-      }
+
       .span {
         color: #e3f0ff;
         font-size: 18px;
