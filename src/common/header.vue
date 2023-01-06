@@ -8,7 +8,10 @@
       <span class="mr">{{ degree }}°C</span>
     </div>
     <div class="title" @click="handleClick('port')">智慧渔港一张图</div>
-    <div class="right" @click="openUrl">广东省渔港一张图</div>
+    <div class="right">
+      <span style="margin-right: 30px" @click="openUrl(0)">渔港大数据中心</span>
+      <span @click="openUrl(1)">广东省渔港一张图</span>
+    </div>
   </div>
 </template>
 
@@ -45,8 +48,12 @@ const handleClick = (name: string) => {
   router.push({ name });
 };
 
-const openUrl = () => {
-  window.open('http://14.23.111.138:92/gdhyyy/index.jsp');
+const openUrl = (index: number) => {
+  if (index === 0) {
+    window.open('http://10.10.13.28:3001/index');
+  } else if (index === 1) {
+    window.open('http://14.23.111.138:92/gdhyyy/index.jsp');
+  }
 };
 </script>
 
@@ -92,7 +99,9 @@ const openUrl = () => {
     right: 10%;
     color: #ddfff7;
     font-size: 16px;
-    cursor: pointer;
+    span {
+      cursor: pointer;
+    }
   }
 }
 </style>

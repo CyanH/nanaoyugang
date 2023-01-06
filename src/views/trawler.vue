@@ -17,13 +17,9 @@ const currentComponent = ref(rightDrawer);
 
 onMounted(() => {
   emitter.on('setRightDrawer', (name) => {
-    
-    
-    if (name === 'event') {
-      //
-    } else if(name === 'gangKo'){
-      currentComponent.value = chuan
-    }else {
+    if (name === 'gangKo') {
+      currentComponent.value = chuan;
+    } else {
       currentComponent.value = rightDrawer;
     }
   });

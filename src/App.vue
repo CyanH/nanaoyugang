@@ -5,13 +5,14 @@
       <router-view />
     </div>
     <footer-view />
-    <div id="marsMap" class="mars3d-container"></div>
+    <div v-show="mapVisible" id="marsMap" class="mars3d-container"></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import * as mars3d from 'mars3d';
-import { defineAsyncComponent, markRaw, onMounted } from 'vue';
+import { defineAsyncComponent, markRaw, onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { useCommonStore } from './store';
 import headerView from './common/header.vue';
 import { getDefaultContextMenu } from '@/utils/getDefaultContextMenu';
@@ -19,6 +20,19 @@ import { getDefaultContextMenu } from '@/utils/getDefaultContextMenu';
 const footerView = markRaw(defineAsyncComponent(() => import('./common/footer.vue')));
 const configUrl = 'config/config.json';
 const commonStore = useCommonStore();
+const mapVisible = ref(true);
+const route = useRoute();
+
+watch(
+  () => route.path,
+  (val) => {
+    if (val === '/' || val === '/trawler') {
+      mapVisible.value = true;
+    } else {
+      mapVisible.value = false;
+    }
+  }
+);
 
 onMounted(() => {
   mars3d.Util.fetchJson({ url: configUrl }).then((data: any) => {
