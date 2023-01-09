@@ -22,7 +22,6 @@ let list = ref('');
 onMounted(() => {
   emitter.on('setRightDrawer', (name) => {
     if (name === 'gangKo') {
-      console.log('111');
       currentComponent.value = gangKoDrawer;
     } else {
       currentComponent.value = rightDrawer;
@@ -30,7 +29,6 @@ onMounted(() => {
   });
 });
 emitter.on('clickWuDrawer', (item: any) => {
-  console.log(item);
   show.value = item.flag;
   if (item.name === '云澳中心渔港') {
     list.value =
