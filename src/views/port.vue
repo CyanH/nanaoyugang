@@ -4,31 +4,35 @@
   <template v-if="show">
     <quan-jin :list="list"></quan-jin>
   </template>
-  <map-view></map-view>
+
+  <map-view v-show="commonStore.mapComponent === 'mapView'"></map-view>
+  <model-view v-show="commonStore.mapComponent === 'modelView'"></model-view>
 </template>
 
 <script setup lang="ts">
+import { useCommonStore } from '@/store';
 import emitter from '@/utils/eventbus';
-import mapView from './port/map.vue';
-import { defineAsyncComponent, markRaw, onMounted, onUnmounted, ref } from 'vue';
+import { defineAsyncComponent, markRaw, onMounted, onUnmounted, ref, watch } from 'vue';
 
 const leftDrawer = markRaw(defineAsyncComponent(() => import('./port/leftDrawer.vue')));
 const rightDrawer = markRaw(defineAsyncComponent(() => import('./port/rightDrawer.vue')));
+const mapView = markRaw(defineAsyncComponent(() => import('./port/map.vue')));
+const modelView = markRaw(defineAsyncComponent(() => import('./port/model.vue')));
 const gangKoDrawer = markRaw(defineAsyncComponent(() => import('./left/left.vue')));
 const quanJin = markRaw(defineAsyncComponent(() => import('./left/quanjin.vue')));
 const currentComponent = ref(rightDrawer);
 const show = ref(false);
-let list = ref('');
-onMounted(() => {
-  emitter.on('setRightDrawer', (name) => {
-    if (name === 'gangKo') {
-      console.log('111');
-      currentComponent.value = gangKoDrawer;
-    } else {
-      currentComponent.value = rightDrawer;
-    }
-  });
+const list = ref('');
+const commonStore = useCommonStore();
+
+emitter.on('setRightDrawer', (name) => {
+  if (name === 'gangKo') {
+    currentComponent.value = gangKoDrawer;
+  } else {
+    currentComponent.value = rightDrawer;
+  }
 });
+
 emitter.on('clickWuDrawer', (item: any) => {
   console.log(item);
   show.value = item.flag;

@@ -11,7 +11,6 @@ const breedStore = useBreedStore();
 const commonStore = useCommonStore();
 const graphicLayer = new mars3d.layer.GraphicLayer();
 onMounted(() => {
-  commonStore.map?.flyHome();
   commonStore.map?.addLayer(graphicLayer);
 
   let arr = [

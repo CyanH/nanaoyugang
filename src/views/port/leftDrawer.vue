@@ -1,5 +1,5 @@
 <template>
-  <v-drawer direction="left">
+  <v-drawer direction="left" hasArrow>
     <v-card>
       <div class="one">
         <v-title title="港区概况"></v-title>
