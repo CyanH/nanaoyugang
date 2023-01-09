@@ -5,8 +5,7 @@
     <quan-jin :list="list"></quan-jin>
   </template>
 
-  <map-view v-show="commonStore.mapComponent === 'mapView'"></map-view>
-  <model-view v-show="commonStore.mapComponent === 'modelView'"></model-view>
+  <component :is="mapComponent"></component>
 </template>
 
 <script setup lang="ts">
@@ -21,9 +20,21 @@ const modelView = markRaw(defineAsyncComponent(() => import('./port/model.vue'))
 const gangKoDrawer = markRaw(defineAsyncComponent(() => import('./left/left.vue')));
 const quanJin = markRaw(defineAsyncComponent(() => import('./left/quanjin.vue')));
 const currentComponent = ref(rightDrawer);
+const mapComponent = ref();
 const show = ref(false);
 const list = ref('');
 const commonStore = useCommonStore();
+
+onMounted(() => {
+  changeMapComponent();
+});
+
+watch(
+  () => commonStore.mapComponent,
+  () => {
+    changeMapComponent();
+  }
+);
 
 emitter.on('setRightDrawer', (name) => {
   if (name === 'gangKo') {
@@ -32,6 +43,14 @@ emitter.on('setRightDrawer', (name) => {
     currentComponent.value = rightDrawer;
   }
 });
+
+const changeMapComponent = () => {
+  if (commonStore.mapComponent === 'mapView') {
+    mapComponent.value = mapView;
+  } else {
+    mapComponent.value = modelView;
+  }
+};
 
 emitter.on('clickWuDrawer', (item: any) => {
   console.log(item);

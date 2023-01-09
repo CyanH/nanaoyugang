@@ -6,7 +6,10 @@
     </div>
     <footer-view />
 
-    <div v-show="commonStore.mapVisible" id="marsMap" class="mars3d-container"></div>
+    <div v-show="commonStore.mapVisible">
+      <div v-show="commonStore.mapComponent === 'mapView'" id="marsMap" class="mars3d-container"></div>
+      <div v-show="commonStore.mapComponent === 'modelView'" id="model" class="mars3d-container"></div>
+    </div>
 
     <div class="chooseBar flex" v-show="commonStore.mapVisible">
       <div :class="choose === 0 ? 'choose' : ''" style="margin-right: 10px" @click="handleClick(0)">地图</div>
@@ -17,7 +20,7 @@
 
 <script setup lang="ts">
 import * as mars3d from 'mars3d';
-import { defineAsyncComponent, markRaw, onMounted, ref, watch } from 'vue';
+import { defineAsyncComponent, markRaw, nextTick, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCommonStore } from './store';
 import headerView from './common/header.vue';
@@ -97,63 +100,66 @@ const createLayer = (map: mars3d.Map) => {
   graphicLayer.addGraphic(graphic);
 };
 
+const createModel = () => {
+  const mapOptions = {
+    scene: {
+      center: { lat: 23.337809, lng: 117.035226, alt: 12.1, heading: 278.6, pitch: -34.6 },
+      showSun: false,
+      showMoon: false,
+      showSkyBox: false,
+      showSkyAtmosphere: false,
+      fog: false,
+      contextOptions: {
+        webgl: {
+          alpha: true,
+        },
+      },
+      globe: {
+        show: false,
+        showGroundAtmosphere: false,
+        enableLighting: false,
+      },
+    },
+    control: {
+      baseLayerPicker: false,
+    },
+    basemaps: [],
+    layers: [],
+  };
+  const map = new mars3d.Map('model', mapOptions);
+  map.bindContextMenu(getDefaultContextMenu(map));
+
+  const graphicLayer = new mars3d.layer.GraphicLayer({
+    name: '模型',
+    data: [
+      {
+        type: 'model',
+        position: [117.035067, 23.337833, 0],
+        style: {
+          url: 'model/model.glb',
+          scale: 1,
+        },
+      },
+    ],
+    flyTo: true,
+  });
+  map.addLayer(graphicLayer);
+  const rawMap = markRaw(map);
+  commonStore.setModel(rawMap);
+};
+
 const handleClick = (index: number) => {
   if (choose.value === index) return;
   choose.value = index;
-  commonStore.map?.destroy();
-  commonStore.setMap(null);
   if (index === 0) {
-    createMap().then(() => {
-      commonStore.setMapComponent('mapView');
-    });
+    commonStore.setMapComponent('mapView');
   } else {
-    const mapOptions = {
-      scene: {
-        center: { lat: 23.337809, lng: 117.035226, alt: 12.1, heading: 278.6, pitch: -34.6 },
-        showSun: false,
-        showMoon: false,
-        showSkyBox: false,
-        showSkyAtmosphere: false,
-        fog: false,
-        contextOptions: {
-          webgl: {
-            alpha: true,
-          },
-        },
-        globe: {
-          show: false,
-          showGroundAtmosphere: false,
-          enableLighting: false,
-        },
-      },
-      control: {
-        baseLayerPicker: false,
-      },
-      basemaps: [],
-      layers: [],
-    };
-    const map = new mars3d.Map('marsMap', mapOptions);
-    map.bindContextMenu(getDefaultContextMenu(map));
-
-    const graphicLayer = new mars3d.layer.GraphicLayer({
-      name: '模型',
-      data: [
-        {
-          type: 'model',
-          position: [117.035067, 23.337833, 0],
-          style: {
-            url: 'model/model.glb',
-            scale: 1,
-          },
-        },
-      ],
-      flyTo: true,
-    });
-    map.addLayer(graphicLayer);
-    const rawMap = markRaw(map);
-    commonStore.setMap(rawMap);
-
     commonStore.setMapComponent('modelView');
+    if (!commonStore.model) {
+      nextTick(() => {
+        createModel();
+      });
+    }
   }
 };
 </script>

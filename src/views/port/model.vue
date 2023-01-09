@@ -12,7 +12,7 @@ const commonStore = useCommonStore();
 const graphicLayer = new mars3d.layer.GraphicLayer();
 
 onMounted(() => {
-  commonStore.map?.addLayer(graphicLayer);
+  commonStore.model?.addLayer(graphicLayer);
   const yaGraphic = new mars3d.graphic.BillboardEntity({
     position: new mars3d.LngLatPoint(117.035086, 23.337857, 0.4),
     style: {
@@ -66,6 +66,6 @@ onMounted(() => {
   });
 });
 onUnmounted(() => {
-  commonStore.map?.removeLayer(graphicLayer);
+  commonStore.model?.removeLayer(graphicLayer);
 });
 </script>
