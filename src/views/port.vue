@@ -4,31 +4,56 @@
   <template v-if="show">
     <quan-jin :list="list"></quan-jin>
   </template>
-  <map-view></map-view>
+
+  <component :is="mapComponent"></component>
 </template>
 
 <script setup lang="ts">
+import { useCommonStore } from '@/store';
 import emitter from '@/utils/eventbus';
-import mapView from './port/map.vue';
-import { defineAsyncComponent, markRaw, onMounted, onUnmounted, ref } from 'vue';
+import { defineAsyncComponent, markRaw, onMounted, onUnmounted, ref, watch } from 'vue';
 
 const leftDrawer = markRaw(defineAsyncComponent(() => import('./port/leftDrawer.vue')));
 const rightDrawer = markRaw(defineAsyncComponent(() => import('./port/rightDrawer.vue')));
+const mapView = markRaw(defineAsyncComponent(() => import('./port/map.vue')));
+const modelView = markRaw(defineAsyncComponent(() => import('./port/model.vue')));
 const gangKoDrawer = markRaw(defineAsyncComponent(() => import('./left/left.vue')));
 const quanJin = markRaw(defineAsyncComponent(() => import('./left/quanjin.vue')));
 const currentComponent = ref(rightDrawer);
+const mapComponent = ref();
 const show = ref(false);
-let list = ref('');
+const list = ref('');
+const commonStore = useCommonStore();
+
 onMounted(() => {
-  emitter.on('setRightDrawer', (name) => {
-    if (name === 'gangKo') {
-      currentComponent.value = gangKoDrawer;
-    } else {
-      currentComponent.value = rightDrawer;
-    }
-  });
+  changeMapComponent();
 });
+
+watch(
+  () => commonStore.mapComponent,
+  () => {
+    changeMapComponent();
+  }
+);
+
+emitter.on('setRightDrawer', (name) => {
+  if (name === 'gangKo') {
+    currentComponent.value = gangKoDrawer;
+  } else {
+    currentComponent.value = rightDrawer;
+  }
+});
+
+const changeMapComponent = () => {
+  if (commonStore.mapComponent === 'mapView') {
+    mapComponent.value = mapView;
+  } else {
+    mapComponent.value = modelView;
+  }
+};
+
 emitter.on('clickWuDrawer', (item: any) => {
+  console.log(item);
   show.value = item.flag;
   if (item.name === '云澳中心渔港') {
     list.value =

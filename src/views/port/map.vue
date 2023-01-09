@@ -10,8 +10,8 @@ import { useBreedStore } from '@/store';
 const breedStore = useBreedStore();
 const commonStore = useCommonStore();
 const graphicLayer = new mars3d.layer.GraphicLayer();
+
 onMounted(() => {
-  commonStore.map?.flyHome();
   commonStore.map?.addLayer(graphicLayer);
   const yaGraphic = new mars3d.graphic.BillboardEntity({
     position: new mars3d.LngLatPoint(117.094195, 23.408295, 0),
@@ -60,7 +60,7 @@ onMounted(() => {
   graphicLayer.on(mars3d.EventType.click, (event) => {
     console.log(event.sourceTarget._name);
     console.log(event.sourceTarget);
-    breedStore.setBaseName(event.sourceTarget._name)
+    breedStore.setBaseName(event.sourceTarget._name);
     emitter.emit('setRightDrawer', 'gangKo');
   });
 });

@@ -5,13 +5,22 @@
       <router-view />
     </div>
     <footer-view />
-    <div v-show="mapVisible" id="marsMap" class="mars3d-container"></div>
+
+    <div v-show="commonStore.mapVisible">
+      <div v-show="commonStore.mapComponent === 'mapView'" id="marsMap" class="mars3d-container"></div>
+      <div v-show="commonStore.mapComponent === 'modelView'" id="model" class="mars3d-container"></div>
+    </div>
+
+    <div class="chooseBar flex" v-show="commonStore.mapVisible">
+      <div :class="choose === 0 ? 'choose' : ''" style="margin-right: 10px" @click="handleClick(0)">地图</div>
+      <div :class="choose === 1 ? 'choose' : ''" @click="handleClick(1)">模型</div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import * as mars3d from 'mars3d';
-import { defineAsyncComponent, markRaw, onMounted, ref, watch } from 'vue';
+import { defineAsyncComponent, markRaw, nextTick, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCommonStore } from './store';
 import headerView from './common/header.vue';
@@ -20,22 +29,26 @@ import { getDefaultContextMenu } from '@/utils/getDefaultContextMenu';
 const footerView = markRaw(defineAsyncComponent(() => import('./common/footer.vue')));
 const configUrl = 'config/config.json';
 const commonStore = useCommonStore();
-const mapVisible = ref(true);
 const route = useRoute();
+const choose = ref(0);
 
 watch(
   () => route.path,
   (val) => {
     if (val === '/' || val === '/trawler') {
-      mapVisible.value = true;
+      commonStore.setMapVisible(true);
     } else {
-      mapVisible.value = false;
+      commonStore.setMapVisible(false);
     }
   }
 );
 
 onMounted(() => {
-  mars3d.Util.fetchJson({ url: configUrl }).then((data: any) => {
+  createMap();
+});
+
+const createMap = async () => {
+  await mars3d.Util.fetchJson({ url: configUrl }).then((data: any) => {
     const map = new mars3d.Map('marsMap', data.map3d);
     // 绑定当前项目的默认右键菜单
     map.bindContextMenu(getDefaultContextMenu(map));
@@ -43,7 +56,7 @@ onMounted(() => {
     const rawMap = markRaw(map);
     commonStore.setMap(rawMap);
   });
-});
+};
 
 const createLayer = (map: mars3d.Map) => {
   const graphicLayer = new mars3d.layer.GraphicLayer();
@@ -86,6 +99,69 @@ const createLayer = (map: mars3d.Map) => {
   });
   graphicLayer.addGraphic(graphic);
 };
+
+const createModel = () => {
+  const mapOptions = {
+    scene: {
+      center: { lat: 23.337809, lng: 117.035226, alt: 12.1, heading: 278.6, pitch: -34.6 },
+      showSun: false,
+      showMoon: false,
+      showSkyBox: false,
+      showSkyAtmosphere: false,
+      fog: false,
+      contextOptions: {
+        webgl: {
+          alpha: true,
+        },
+      },
+      globe: {
+        show: false,
+        showGroundAtmosphere: false,
+        enableLighting: false,
+      },
+    },
+    control: {
+      baseLayerPicker: false,
+    },
+    basemaps: [],
+    layers: [],
+  };
+  const map = new mars3d.Map('model', mapOptions);
+  map.bindContextMenu(getDefaultContextMenu(map));
+
+  const graphicLayer = new mars3d.layer.GraphicLayer({
+    name: '模型',
+    data: [
+      {
+        type: 'model',
+        position: [117.035067, 23.337833, 0],
+        style: {
+          url: 'model/model.glb',
+          scale: 1,
+        },
+      },
+    ],
+    flyTo: true,
+  });
+  map.addLayer(graphicLayer);
+  const rawMap = markRaw(map);
+  commonStore.setModel(rawMap);
+};
+
+const handleClick = (index: number) => {
+  if (choose.value === index) return;
+  choose.value = index;
+  if (index === 0) {
+    commonStore.setMapComponent('mapView');
+  } else {
+    commonStore.setMapComponent('modelView');
+    if (!commonStore.model) {
+      nextTick(() => {
+        createModel();
+      });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -105,5 +181,23 @@ const createLayer = (map: mars3d.Map) => {
   position: fixed;
   top: 0;
   left: 0;
+}
+.chooseBar {
+  position: absolute;
+  left: 27%;
+  top: 83px;
+  z-index: 9;
+  background-color: rgba(17, 16, 45, 0.7);
+  padding: 10px 15px;
+  border-radius: 25px;
+  font-size: 14px;
+
+  div {
+    cursor: pointer;
+  }
+
+  .choose {
+    color: #00f6ff;
+  }
 }
 </style>
