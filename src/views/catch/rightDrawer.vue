@@ -72,21 +72,21 @@ const getData = () => {
   let new_datas = [];
   let new_data = [
     {
-      name: '莲花山码头交易市场',
+      name: '云澳中心渔港交易市场',
       color: '#ffd600',
       o1_color: 'rgba(255,214,0,1)',
       o2_color: 'rgba(255,214,0,0)',
       data: data_one1,
     },
     {
-      name: '黄沙水产',
+      name: '吴平寨码头',
       color: '#37f097',
       o1_color: 'rgba(55,240,151,1)',
       o2_color: 'rgba(55,240,151,0)',
       data: data_one2,
     },
     {
-      name: '五湖四海水产世界',
+      name: '后江渔港',
       color: '#ff8c00',
       o1_color: 'rgba(255,140,0,1)',
       o2_color: 'rgba(255,140,0,0)',
