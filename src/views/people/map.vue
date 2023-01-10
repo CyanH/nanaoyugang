@@ -17,7 +17,7 @@
             </div>
             <div class="left_con left_con1">
             <div class="titles">船员档案</div>
-            <div class="con11">在籍船员&nbsp; &nbsp;<span class="num">401</span>&nbsp;&nbsp; 个</div>
+            <div class="con11">在籍船员&nbsp; &nbsp;<span class="num">1359</span>&nbsp;&nbsp; 个</div>
             </div>
             <img class="left_xian1" src="@/assets/image/left.png" alt="">
             <div class="left_con left_con2">

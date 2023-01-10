@@ -1,8 +1,8 @@
 <template>
   <v-drawer direction="left" hasArrow>
     <v-card>
-      <v-title title="船员档案"></v-title>
-      <div class="flex wrapper">
+      <v-title title="船员出勤率"></v-title>
+      <!-- <div class="flex wrapper">
         <img src="@/assets/image/people/icon-archives.png" class="icon" />
         <span class="label">船员档案数</span>
         <count-to :startVal="0" :endVal="1359" :duration="3000" class="num"></count-to>
@@ -26,8 +26,10 @@
             <div class="content"><span class="label">超长作业人员</span><span class="num">8</span></div>
           </div>
         </div>
+      </div> -->
+      <div class="kaoq">
+        <div class="chart_kaoq" ref="chart_kaoq"></div>
       </div>
-
       <div class="list">
         <div class="top">
           <v-title title="培训记录"></v-title>
@@ -79,6 +81,7 @@ import { CountTo } from 'vue3-count-to';
 import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
 import * as echarts from 'echarts';
 import { newChart } from '../trawler/chart/newChart';
+import { kao_q } from '../trawler/chart/kaoq'
 const state = reactive({
   recordList: [
     {
@@ -157,15 +160,22 @@ const state = reactive({
 });
 let charts_all: echarts.ECharts;
 let charts = ref<HTMLDivElement | null>(null);
+
+let charts_all_kaoq: echarts.ECharts;
+let chart_kaoq = ref<HTMLDivElement | null>(null);
+
 onMounted(() => {
   charts_all = echarts.init(charts.value as HTMLDivElement);
+  charts_all_kaoq = echarts.init(chart_kaoq.value as HTMLDivElement);
   window.addEventListener('resize', () => {
     charts_all.resize();
+    charts_all_kaoq.resize();
   });
   getLook();
 })
 const getLook = () => {
   newChart(charts_all)
+  kao_q(charts_all_kaoq)
 }
 </script>
 
@@ -230,8 +240,18 @@ const getLook = () => {
   }
 }
 
+.kaoq{
+  height: 30%;
+  width: 100%;
+  .chart_kaoq{
+    width: 100%;
+    margin-top: 12px;
+    height: calc(100% - 12px);
+  }
+}
 .list {
-  height: calc(100% - 170px);
+  // height: calc(100% - 280px);
+  height: 66.5%;
 
   .top,
   .bottom {
