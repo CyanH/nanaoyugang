@@ -10,7 +10,7 @@ export function zhong_l(myChart: echarts.ECharts) {
           textStyle: {
             fontSize: 24,
             fontWeight: "normal",
-            fontStyle: "normal",
+            fontStyle: "oblique",
             color: "#00f6ff",
           },
         },
