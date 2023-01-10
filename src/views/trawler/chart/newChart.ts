@@ -4,7 +4,7 @@ export function newChart(myChart: echarts.ECharts) {
     let series = []
     var echartsData = {
         title: 'title',
-        city: ['04月','05月','06月','07月','08月','09月', '10月', '11月', '12月'],
+        city: ['4月','5月','6月','7月','8月','9月', '10月', '11月', '12月'],
         legend: ['行为违规', '证书违规'],
         data: [
             [9,5,5,6,7,2,9,12,7],

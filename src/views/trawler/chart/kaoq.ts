@@ -3,39 +3,39 @@ import * as echarts from 'echarts';
 export function kao_q(myChart: echarts.ECharts) {
     var data = [
         {
-            name: "01月",
+            name: "1月",
             value: 80,
         },
         {
-            name: "02月",
+            name: "2月",
             value: 87,
         },
         {
-            name: "03月",
+            name: "3月",
             value: 71,
         },
         {
-            name: "04月",
+            name: "4月",
             value: 80,
         },
         {
-            name: "05月",
+            name: "5月",
             value: 66,
         },
         {
-            name: "06月",
+            name: "6月",
             value: 80,
         },
         {
-            name: "07月",
+            name: "7月",
             value: 80,
         },
         {
-            name: "08月",
+            name: "8月",
             value: 55,
         },
         {
-            name: "09月",
+            name: "9月",
             value: 60,
         },
         {

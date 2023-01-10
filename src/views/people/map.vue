@@ -72,7 +72,7 @@
 <style lang="scss" scoped>
 .maps{
     width: 46%;
-    height:85%;
+    height:82%;
     position: absolute;
     left: 27%;
     top: 15px;
