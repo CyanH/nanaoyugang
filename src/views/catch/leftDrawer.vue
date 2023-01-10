@@ -2,13 +2,13 @@
   <v-drawer direction="left" hasArrow>
     <v-card>
       <v-title title="渔获概况"></v-title>
-      <div class="flex wrapper">
+      <!-- <div class="flex wrapper">
         <img src="@/assets/image/catch/icon-ashore.png" class="icon" />
         <span class="label">今日上岸数</span>
         <count-to :startVal="0" :endVal="1725" :duration="3000" class="num"></count-to>
         <span>船次</span>
-      </div>
-      <div class="one">
+      </div> -->
+      <!-- <div class="one">
         <div v-for="(item, index) in list.one" class="o">
           <div class="alert-line"></div>
           <div class="right">
@@ -19,6 +19,9 @@
             </div>
           </div>
         </div>
+      </div> -->
+      <div class="ttop">
+        <div class="charts" ref="zhongl"></div>
       </div>
       <div class="ssdt">
         <div class="title">
@@ -73,8 +76,12 @@ import { onMounted, reactive, ref, onUnmounted } from 'vue';
 import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
 import * as echarts from 'echarts';
 import { loadChart } from './chart/shangan';
+import { zhong_l } from './chart/zhongl';
 let myChar_shangan: echarts.ECharts;
 let shangan = ref<HTMLDivElement | null>(null);
+
+let myChar_zhongl: echarts.ECharts;
+let zhongl = ref<HTMLDivElement | null>(null);
 let o_index = ref(2);
 const list = reactive({
   one: [
@@ -167,14 +174,17 @@ const list = reactive({
 });
 onMounted(() => {
   myChar_shangan = echarts.init(shangan.value as HTMLDivElement);
+  myChar_zhongl = echarts.init(zhongl.value as HTMLDivElement);
   window.addEventListener('resize', () => {
     myChar_shangan.resize();
+    myChar_zhongl.resize();
   });
   getData();
 });
 onUnmounted(() => {
   window.removeEventListener('resize', () => {
     myChar_shangan.resize();
+    myChar_zhongl.resize();
   });
 });
 const go_active = (index: any) => {
@@ -242,6 +252,7 @@ const getData = () => {
     });
   }
   loadChart(myChar_shangan, new_datas, date, '吨');
+  zhong_l(myChar_zhongl)
 };
 </script>
 
@@ -321,10 +332,17 @@ const getData = () => {
     margin-right: 16px;
   }
 }
-
+.ttop{
+  width: 100%;
+  height: 220px;
+  .charts{
+    width: 100%;
+    height: 100%;
+  }
+}
 .ssdt {
   width: 100%;
-  height: calc(100% - 500px);
+  height: calc(100% - 550px);
   margin-bottom: 12px;
   .con {
     margin-top: 12px;
@@ -402,7 +420,7 @@ const getData = () => {
 }
 .bottom {
   width: 100%;
-  height: 250px;
+  height: 280px;
   .chert {
     height: calc(100% - 52px);
     margin-top: 12px;
