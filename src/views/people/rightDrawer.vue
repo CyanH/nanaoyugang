@@ -76,11 +76,11 @@ const state = reactive({
   list: [
     {
       title: '24H船员进港',
-      value: 0
+      value: 20
     },
     {
       title: '24H船员出港',
-      value: 0
+      value: 50
     },
   ] as any,
   recordList: [

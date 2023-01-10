@@ -4,8 +4,8 @@
       <v-title title="船员档案"></v-title>
       <div class="flex wrapper">
         <img src="@/assets/image/people/icon-archives.png" class="icon" />
-        <span class="label">船员概况</span>
-        <count-to :startVal="0" :endVal="888" :duration="3000" class="num"></count-to>
+        <span class="label">船员档案数</span>
+        <count-to :startVal="0" :endVal="1359" :duration="3000" class="num"></count-to>
       </div>
       <div class="flex-between">
         <div class="trawler-overview-item">
@@ -51,7 +51,7 @@
         <div class="bottom">
           <v-title title="船员违规"></v-title>
           <div class="cont">
-            <div class="nav">
+            <!-- <div class="nav">
               <div>姓名</div>
               <div>违规类型</div>
               <div>违规时间</div>
@@ -64,7 +64,8 @@
                   <div>{{ item.date }}</div>
                 </div>
               </vue3-seamless-scroll>
-            </div>
+            </div> -->
+            <div class="chart" ref="charts"></div>
           </div>
         </div>
       </div>
@@ -73,10 +74,11 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { onMounted, reactive,ref } from 'vue';
 import { CountTo } from 'vue3-count-to';
 import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
-
+import * as echarts from 'echarts';
+import { newChart } from '../trawler/chart/newChart';
 const state = reactive({
   recordList: [
     {
@@ -153,6 +155,18 @@ const state = reactive({
     },
   ],
 });
+let charts_all: echarts.ECharts;
+let charts = ref<HTMLDivElement | null>(null);
+onMounted(() => {
+  charts_all = echarts.init(charts.value as HTMLDivElement);
+  window.addEventListener('resize', () => {
+    charts_all.resize();
+  });
+  getLook();
+})
+const getLook = () => {
+  newChart(charts_all)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -231,7 +245,10 @@ const state = reactive({
   .cont {
     height: calc(100% - 50px);
     margin-top: 12px;
-
+    .chart{
+      width: 100%;
+      height: 100%;
+    }
     .nav {
       width: 100%;
       display: flex;
