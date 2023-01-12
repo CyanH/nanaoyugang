@@ -24,7 +24,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('nayg/screen'),
   routes,
   scrollBehavior: () => ({ top: 0 }),
 });

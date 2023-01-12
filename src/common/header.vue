@@ -50,7 +50,7 @@ const handleClick = (name: string) => {
 
 const openUrl = (index: number) => {
   if (index === 0) {
-    window.open('http://10.10.13.28:3001/index');
+    window.open('http://14.23.111.138:92/nayg/data/index');
   } else if (index === 1) {
     window.open('http://14.23.111.138:92/gdhyyy/index.jsp');
   }
