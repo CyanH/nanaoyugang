@@ -183,17 +183,12 @@ const getImgUrl = (url: number) => {
     .title{
       height: 40px;
       margin-top: 8px;
-      // background-color: yellow;
       display: flex;
       .left{
           font-size: 20px;
-          // width: 180px;
           display: flex;
           align-items: center;
-          img{
-            // width: 9px;
-            // height: 9px;
-          }
+ 
           .span{
               color: #e3f0ff;
               font-size: 18px;

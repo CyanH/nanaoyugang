@@ -2,31 +2,6 @@
   <v-drawer direction="left" hasArrow>
     <v-card>
       <v-title title="船员出勤率"></v-title>
-      <!-- <div class="flex wrapper">
-        <img src="@/assets/image/people/icon-archives.png" class="icon" />
-        <span class="label">船员档案数</span>
-        <count-to :startVal="0" :endVal="1359" :duration="3000" class="num"></count-to>
-      </div>
-      <div class="flex-between">
-        <div class="trawler-overview-item">
-          <div class="trawler-overview-wrapper flex">
-            <img src="@/assets/image/people/icon-crew-arrival.png" class="item-icon" />
-            <div class="content"><span class="label">保险过期人员</span><span class="num">3</span></div>
-          </div>
-        </div>
-        <div class="trawler-overview-item">
-          <div class="trawler-overview-wrapper flex">
-            <img src="@/assets/image/people/icon-crew-arrival.png" class="item-icon" />
-            <div class="content"><span class="label">证书过期人员</span><span class="num">1</span></div>
-          </div>
-        </div>
-        <div class="trawler-overview-item">
-          <div class="trawler-overview-wrapper flex">
-            <img src="@/assets/image/people/icon-crew-arrival.png" class="item-icon" />
-            <div class="content"><span class="label">超长作业人员</span><span class="num">8</span></div>
-          </div>
-        </div>
-      </div> -->
       <div class="kaoq">
         <div class="chart_kaoq" ref="chart_kaoq"></div>
       </div>
@@ -53,20 +28,6 @@
         <div class="bottom">
           <v-title title="船员违规"></v-title>
           <div class="cont">
-            <!-- <div class="nav">
-              <div>姓名</div>
-              <div>违规类型</div>
-              <div>违规时间</div>
-            </div>
-            <div class="content">
-              <vue3-seamless-scroll :list="state.ruleList" :step="0.3" :hover="true" :limitScrollNum="6">
-                <div class="row" v-for="(item, index) in state.ruleList" :key="index">
-                  <div>{{ item.name }}</div>
-                  <div>{{ item.type }}</div>
-                  <div>{{ item.date }}</div>
-                </div>
-              </vue3-seamless-scroll>
-            </div> -->
             <div class="chart" ref="charts"></div>
           </div>
         </div>
@@ -180,66 +141,6 @@ const getLook = () => {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  margin-top: 15px;
-  font-size: 18px;
-  color: #e3f0ff;
-
-  .icon {
-    width: 28px;
-    margin-top: -5px;
-  }
-
-  .label {
-    margin-left: -14px;
-    margin-right: 20px;
-  }
-
-  .num {
-    font-size: 24px;
-    font-style: oblique;
-    color: #0bf;
-    margin-right: 12px;
-  }
-}
-
-.trawler-overview-item {
-  padding: 13px 0;
-  background-image: linear-gradient(
-    0deg,
-    rgba(99, 163, 255, 0.02),
-    rgba(22, 127, 255, 0.2) 50%,
-    rgba(114, 190, 255, 0.02)
-  );
-
-  .trawler-overview-wrapper {
-    border-left: 1px solid #63a3ff;
-    padding: 8px 0;
-    width: 140px;
-
-    .item-icon {
-      width: 28px;
-      margin: 0 10px;
-    }
-
-    .content {
-      align-items: flex-start;
-      display: flex;
-      flex-direction: column;
-
-      .label {
-        font-size: 14px;
-        margin-bottom: 4px;
-      }
-
-      .num {
-        color: #04dcf6;
-        font-size: 24px;
-      }
-    }
-  }
-}
-
 .kaoq{
   height: 30%;
   width: 100%;
@@ -316,18 +217,6 @@ const getLook = () => {
         :nth-child(3) {
           width: 35%;
         }
-      }
-
-      .wkg {
-        color: #ff8251;
-      }
-
-      .sgz {
-        color: #00f6ff;
-      }
-
-      .ywg {
-        color: #22ff51;
       }
     }
   }

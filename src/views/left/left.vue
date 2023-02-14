@@ -192,12 +192,9 @@ onMounted(() => {
 });
 const getData = () => {
   console.log('1111');
-  let p = {
-    plantWlwId: '6ba781c68c87465cbc82852ca4fff7b7',
-  };
   console.log(player);
   if (!player) {
-    getVideoData(p).then((res: any) => {
+    getVideoData({ plantWlwId: '9df56f32710840c1a1ac1121bb5aac48' }).then((res: any) => {
       console.log(res);
       let dom = videoEle.value as HTMLDivElement;
       if (dom.offsetWidth !== 0) {

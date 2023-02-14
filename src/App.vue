@@ -11,7 +11,7 @@
       <div v-show="commonStore.mapComponent === 'modelView'" id="model" class="mars3d-container"></div>
     </div>
 
-    <div class="chooseBar flex" v-show="commonStore.mapVisible">
+    <div class="chooseBar flex" v-show="route.path === '/'">
       <div :class="choose === 0 ? 'choose' : ''" style="margin-right: 10px" @click="handleClick(0)">地图</div>
       <div :class="choose === 1 ? 'choose' : ''" @click="handleClick(1)">模型</div>
     </div>
